@@ -40,6 +40,13 @@ export const updateSearchCount = async (searchTerm, movie) => {
 }
 
 export const getTrendingMovies = async () => {
+
+  fetch(`${baseUrl}/trends/top5`, {method: 'GET'})
+  .then(response => response)
+  .then(res => res.json)
+  .catch((e) => console.error("server is down"))
+
+  /*
   try {
     const response = await fetch(`${baseUrl}/trends/top5`);
 
@@ -52,4 +59,5 @@ export const getTrendingMovies = async () => {
   } catch (error) {
     console.log("Error in getTrendingMovies");
   }
+    */
 }
