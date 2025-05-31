@@ -6,7 +6,6 @@ import { useDebounce } from "use-debounce";
 import { getTrendingMovies, updateSearchCount } from "./client/db_access";
 
 const API_BASE_URL = "https://api.themoviedb.org/3";
-const BACKEND_URL = import.meta.env.VITE_DB_URL;
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -25,7 +24,7 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [debouncedSearchTerm] = useDebounce(searchTerm, 500);
   const [trendingMovies, setTrendingMovies] = useState([]);
-  console.log("just for push");
+
   const fetchMovies = async (query = "") => {
     setIsLoading(true);
     setErrorMessage("");
