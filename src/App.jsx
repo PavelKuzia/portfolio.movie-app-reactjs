@@ -25,9 +25,7 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [debouncedSearchTerm] = useDebounce(searchTerm, 500);
   const [trendingMovies, setTrendingMovies] = useState([]);
-
-  console.log(`backend url: ${BACKEND_URL}; key: ${API_KEY}`);
-
+  console.log("just for push");
   const fetchMovies = async (query = "") => {
     setIsLoading(true);
     setErrorMessage("");
