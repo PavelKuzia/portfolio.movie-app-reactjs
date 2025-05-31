@@ -1,7 +1,7 @@
 const baseUrl = import.meta.env.VITE_DB_URL;
 
 export const updateSearchCount = async (searchTerm, movie) => {
-  console.log(`connecting to backend: ${baseUrl}`);
+  
   try {
     const result = await fetch(`${baseUrl}/trends/query?searchTerm=${searchTerm}`);
     // if no entry -> create new entry
