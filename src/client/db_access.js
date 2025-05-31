@@ -40,15 +40,6 @@ export const updateSearchCount = async (searchTerm, movie) => {
 }
 
 export const getTrendingMovies = async () => {
-/*
-  fetch(`${baseUrl}:${backendPort}/api/trends/top5`, {method: 'GET'})
-  .then(response => response)
-  .then(res => {
-    return res.json
-  }
-  )
-  .catch((e) => console.error("server is down"))
-*/
   
   try {
     const response = await fetch(`${baseUrl}:${backendPort}/api/trends/top5`);
