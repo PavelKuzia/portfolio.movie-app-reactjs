@@ -1,13 +1,13 @@
 const baseUrl = import.meta.env.VITE_DB_URL;
+const backendPort = import.meta.env.VITE_DB_URL_PORT;
 
 export const updateSearchCount = async (searchTerm, movie) => {
   
   try {
-    const result = await fetch(`${baseUrl}/trends/query?searchTerm=${searchTerm}`);
+    const result = await fetch(`${baseUrl}:${backendPort}/api/trends/query?searchTerm=${searchTerm}`);
     // if no entry -> create new entry
 
     if (Object.keys(result).length === 0) {
-      console.log("No data");
       const obj = {
         movieId: movie.id,
         count: 1,
@@ -25,11 +25,11 @@ export const updateSearchCount = async (searchTerm, movie) => {
         body: JSON.stringify(obj)
       };
 
-      const postResult = await fetch(`${baseUrl}/trends`, options);
+      const postResult = await fetch(`${baseUrl}:${backendPort}/api/trends`, options);
 
     } else {
       // update existing entry
-      const putResult = await fetch(`${baseUrl}/trends/${movie.id}`, {
+      const putResult = await fetch(`${baseUrl}:${backendPort}/api/trends/${movie.id}`, {
         method: 'PUT',
       });
 
@@ -41,7 +41,7 @@ export const updateSearchCount = async (searchTerm, movie) => {
 
 export const getTrendingMovies = async () => {
 
-  fetch(`${baseUrl}/trends/top5`, {method: 'GET'})
+  fetch(`${baseUrl}:${backendPort}/api/trends/top5`, {method: 'GET'})
   .then(response => response)
   .then(res => res.json)
   .catch((e) => console.error("server is down"))

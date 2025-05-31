@@ -25,8 +25,6 @@ const App = () => {
   const [debouncedSearchTerm] = useDebounce(searchTerm, 500);
   const [trendingMovies, setTrendingMovies] = useState([]);
 
-  console.log(`connecting to ${BACKEND_URL}`);
-
   const fetchMovies = async (query = "") => {
     setIsLoading(true);
     setErrorMessage("");
