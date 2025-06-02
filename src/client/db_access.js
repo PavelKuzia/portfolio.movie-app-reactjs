@@ -1,13 +1,15 @@
-const baseUrl = import.meta.env.VITE_DB_URL;
-const backendPort = import.meta.env.VITE_DB_URL_PORT;
+const baseUrl = import.meta.env.VITE_BACKEND_URL;
+const backendPort = import.meta.env.VITE_BACKEND_URL_PORT;
 
 export const updateSearchCount = async (searchTerm, movie) => {
   
   try {
     const result = await fetch(`${baseUrl}:${backendPort}/api/trends/query?searchTerm=${searchTerm}`);
-    // if no entry -> create new entry
+    const data = await result.json();
 
-    if (Object.keys(result).length === 0) {
+    // if no entry -> create new entry
+    if (data.length === 0) {
+      
       const obj = {
         movieId: movie.id,
         count: 1,
@@ -24,7 +26,7 @@ export const updateSearchCount = async (searchTerm, movie) => {
         },
         body: JSON.stringify(obj)
       };
-
+      console.log(`posting ${JSON.stringify(obj)}`);
       const postResult = await fetch(`${baseUrl}:${backendPort}/api/trends`, options);
 
     } else {

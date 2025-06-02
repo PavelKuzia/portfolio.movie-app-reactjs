@@ -6,7 +6,7 @@ import { useDebounce } from "use-debounce";
 import { getTrendingMovies, updateSearchCount } from "./client/db_access";
 
 const API_BASE_URL = "https://api.themoviedb.org/3";
-const BACKEND_URL = import.meta.env.VITE_DB_URL;
+
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 const API_OPTIONS = {
@@ -98,7 +98,7 @@ const App = () => {
             <h2>Trending Movies</h2>
             <ul>
               {trendingMovies.map((movie, index) => (
-                <li key={movie.id}>
+                <li key={index}>
                   <p>{index + 1}</p>
                   <img src={movie.posterUrl} alt={movie.title} />
                 </li>
